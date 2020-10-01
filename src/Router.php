@@ -12,26 +12,15 @@ class Router {
      * CURRENT URL
      * **/
     private $_url;
-
     /*
-     * STORE GET ROUTES
-     * **/
-    private $_get = [];
-
-    /*
-     * STORE POST ROUTES
+     * FOR STORING ALL ROUTES
      * */
-    private $_post = [];
-
-    /*
-     * STORE DELETE ROUTES
-     * */
-    private $_delete = [];
-
-    /*
-     * STORE PUT ROUTES
-     * */
-    private $_put = [];
+    private $store = [
+        self::HTTP_GET => [],
+        self::HTTP_POST => [],
+        self::HTTP_DELETE => [],
+        self::HTTP_PUT => []
+    ];
 
 
     public function __construct( string $url )
@@ -45,58 +34,92 @@ class Router {
      * @param function $action
      * **/
     public function get (string $path, $action) : void {
-        $this->_get[] = new Route($path, $action);
+        $this->createRoute(self::HTTP_GET,$path, $action);
     }
 
     /*
      * CATCH HTTP POST REQUEST
      * **/
     public function post (string $path, $action) : void {
-        $this->_post[] = new Route($path, $action);
+        $this->createRoute(self::HTTP_POST, $path, $action);
     }
 
     /*
      * CATCH HTTP DELETE REQUEST
      * **/
-    public function delete () {}
+    public function delete (string $path, $action) {
+        $this->createRoute(self::HTTP_DELETE, $path, $action);
+    }
 
     /*
      *CATCH PUT REQUEST
      *  **/
-    public function update () {}
+    public function update (string $path, $action) {
+        $this->createRoute(self::HTTP_PUT, $path, $action);
+    }
+
+    private function createRoute( string $method, string $path, $action) {
+
+        $parts = explode(DynamicRoute::DELIMITER, $path);
+
+        if(count($parts) > 1) {
+            $this->store[$method][] = new DynamicRoute($path, $action);
+        }
+        else
+        {
+            $this->store[$method][] = new Route($path, $action);
+        }
+    }
 
     /*
      * FOR PARSING URL AND USING CORRECT FUNCTION
      * **/
     public function parse () {
 
-        $all = [
-            self::HTTP_GET => $this->_get,
-            self::HTTP_POST => $this->_post,
-            self::HTTP_PUT => $this->_put,
-            self::HTTP_DELETE => $this->_delete
-        ];
-
         $httpMethod = $_SERVER["REQUEST_METHOD"];
 
-        $currentRoute = array_filter($all[$httpMethod], function (IERoute $value) {
-            if($value->getPath() == $this->_url) {
-                return true;
-            }
-            return false;
-        });
+        $currentRoute = $this->parseRoutes($this->store[$httpMethod]);
 
-        $responseLength = count($currentRoute);
-
-        if($responseLength > 1) {
-            throw new \Exception("Many path are the same");
-            return;
-        }
-        else if ($responseLength === 0) {
+        if (!$currentRoute) {
             throw new \Exception("404 ERROR");
             return;
         }
 
-        array_values($currentRoute)[0]->activate();
+        $currentRoute->activate();
+    }
+
+    /*
+     * FOR PARSING ROUTES COLLECTION
+     * **/
+    private function parseRoutes($routeCollection)   {
+
+        $currentRoute = null;
+        $dynamicPath = null;
+
+        foreach ($routeCollection as $route) {
+
+            $path = $route->getPath();
+            $find = explode($path, $this->_url);
+
+            if(count($find) === 2) {
+                $currentRoute = $route;
+                $dynamicPath = $find[1];
+                break;
+            }
+        }
+
+        if(!$currentRoute) {
+            return null;
+        }
+
+        //TEMPORARY
+        if(method_exists($currentRoute,"transformDynamicPathToParams")) {
+
+            $state = $currentRoute->transformDynamicPathToParams($dynamicPath);
+
+            return $state ? $currentRoute : null;
+        }
+
+        return $currentRoute;
     }
 }

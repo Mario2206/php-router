@@ -8,15 +8,21 @@ interface IERoute {
 
 class Route implements IERoute {
 
+
     /*
      * FUNCTIONAL PATH FOR STARTING ACTION
+     * @string
      * **/
-    private $_path;
+    protected $_path;
+
 
     /*
      * ACTION TO START
+     * @function
      * **/
-    private $_action;
+    protected $_action;
+
+
 
     /*
      * @param string $path
@@ -24,7 +30,7 @@ class Route implements IERoute {
      * **/
     public function __construct(string $path, $action)
     {
-        $this->_path = $path;
+        $this->_path =$path;
         $this->_action = $action;
     }
 
@@ -35,8 +41,8 @@ class Route implements IERoute {
      */
     public function getPath() : string {
         return $this->_path;
-    }
 
+    }
     /*
      *FOR STARTING CURRENT ACTION
      *

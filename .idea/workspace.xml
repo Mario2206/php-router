@@ -11,8 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ca91eb7-37b9-4a50-8d5e-ed73c6240bbd" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Route.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Router.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/DynamicRoute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Route.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,6 +37,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -44,7 +48,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1601562208450</updated>
-      <workItem from="1601562210067" duration="7169000" />
+      <workItem from="1601562210067" duration="7553000" />
+      <workItem from="1601578838840" duration="5591000" />
+      <workItem from="1601590780596" duration="5109000" />
     </task>
     <servers />
   </component>
@@ -61,5 +67,16 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="595" y="135" key="NewPhpClassDialog" timestamp="1601591202073">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="595" y="135" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1601591202073" />
+    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1601591176842">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1601591176842" />
   </component>
 </project>

@@ -1,7 +1,5 @@
 <?php
-require("./src/Route.php");
-require("./src/DynamicRoute.php");
-require("./src/Router.php");
+require ("./vendor/autoload.php");
 
 
 try {
@@ -12,8 +10,21 @@ try {
     $router->get("product/", function () {
         echo "product page";
     });
+
     $router->get("users/", function () {
         echo "users page";
+    });
+
+    $router->post("test/:id", function ($id) {
+        echo "test : " . $id;
+    });
+
+    $router->update("action/:var/:mix/:thing", function ($var, $mix, $thing) {
+        echo "update action " . $var . " " . $mix . " " . $thing;
+    });
+
+    $router->delete("articles/:id", function ($id) {
+        echo "article id : " . $id . " deleted";
     });
 
     $router->parse();

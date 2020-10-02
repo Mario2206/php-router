@@ -1,0 +1,17 @@
+{
+    "name": "mathi/router",
+    "type": "library",
+    "description": "Route manager",
+    "authors": [
+        {
+            "name": "Math2206",
+            "email": "mathieu.raimbault@hotmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Router\\" : "./src"
+        }
+    }
+}

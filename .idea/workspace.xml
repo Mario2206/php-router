@@ -14,7 +14,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DynamicRoute.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicRoute.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Route.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Route.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Router.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Router.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -51,7 +50,7 @@
       <workItem from="1601562210067" duration="7553000" />
       <workItem from="1601578838840" duration="5591000" />
       <workItem from="1601590780596" duration="5474000" />
-      <workItem from="1601651630310" duration="1950000" />
+      <workItem from="1601651630310" duration="3959000" />
     </task>
     <servers />
   </component>

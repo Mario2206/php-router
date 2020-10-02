@@ -100,12 +100,8 @@ class Router {
      * **/
     private function parseRoutes($routeCollection)   {
 
-        $currentRoute = null;
-        $dynamicPath = null;
-
         foreach ($routeCollection as $route) {
 
-            $path = $route->getPath();
             $find = $route->find($this->_url);
 
             if($find) {

@@ -43,6 +43,7 @@ class DynamicRoute extends Route
     {
         $parts = explode($this->_path,$path);
 
+
         if(count($parts) === 2) {
             $dynamicPath = $parts[1];
             return $this->_transformDynamicPathToParams($dynamicPath);

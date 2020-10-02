@@ -3,9 +3,6 @@
 
 namespace Router;
 
-interface IEDynamicRoute extends IERoute {
-     public function transformDynamicPathToParams();
-}
 
 class DynamicRoute extends Route
 {
@@ -38,11 +35,21 @@ class DynamicRoute extends Route
     }
 
     /*
-     * GET ALL DYNAMIC DATA
-     * return array $dynamicData
-     * **/
-    public function getParams () : array{
-        return $this->params;
+     * FOR CHECKING IF THE PATH IS COMPATIBLE WITH THE CURRENT PATH, AND CHECK IF THERE IS A DYNAMIC PATH
+     * @param string path
+     * return boolean
+     */
+    public function find(string $path): bool
+    {
+        $parts = explode($this->_path,$path);
+
+        if(count($parts) === 2) {
+            $dynamicPath = $parts[1];
+            return $this->_transformDynamicPathToParams($dynamicPath);
+        }
+
+        return false;
+
     }
 
     /*
@@ -51,7 +58,7 @@ class DynamicRoute extends Route
      *
      * return true if all variables have value, otherwise return false
      * **/
-    public function transformDynamicPathToParams (string $dynamicPath) {
+    private function _transformDynamicPathToParams (string $dynamicPath) : bool {
         $params = explode("/", $dynamicPath);
 
         $params = array_values(array_filter($params,function ($v){return $v ? true : false;}));
@@ -68,6 +75,9 @@ class DynamicRoute extends Route
         return true;
     }
 
+    /*
+     * CALL CALLBACK ACTION
+     * */
     public function activate(): void
     {
         call_user_func_array( $this->_action , $this->params ) ;

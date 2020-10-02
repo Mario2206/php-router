@@ -58,7 +58,13 @@ class Router {
         $this->createRoute(self::HTTP_PUT, $path, $action);
     }
 
-    private function createRoute( string $method, string $path, $action) {
+    /*
+     * FOR CHOOSING THE CORRECT ROUTE TYPE
+     * @param string $method
+     * @param string $path
+     * @param function $action
+     * */
+    private function createRoute( string $method, string $path, $action) : void {
 
         $parts = explode(DynamicRoute::DELIMITER, $path);
 
@@ -74,7 +80,7 @@ class Router {
     /*
      * FOR PARSING URL AND USING CORRECT FUNCTION
      * **/
-    public function parse () {
+    public function parse () : void {
 
         $httpMethod = $_SERVER["REQUEST_METHOD"];
 
@@ -86,6 +92,7 @@ class Router {
         }
 
         $currentRoute->activate();
+
     }
 
     /*
@@ -99,27 +106,13 @@ class Router {
         foreach ($routeCollection as $route) {
 
             $path = $route->getPath();
-            $find = explode($path, $this->_url);
+            $find = $route->find($this->_url);
 
-            if(count($find) === 2) {
-                $currentRoute = $route;
-                $dynamicPath = $find[1];
-                break;
+            if($find) {
+                return $route;
             }
         }
 
-        if(!$currentRoute) {
-            return null;
-        }
-
-        //TEMPORARY
-        if(method_exists($currentRoute,"transformDynamicPathToParams")) {
-
-            $state = $currentRoute->transformDynamicPathToParams($dynamicPath);
-
-            return $state ? $currentRoute : null;
-        }
-
-        return $currentRoute;
+        return null;
     }
 }

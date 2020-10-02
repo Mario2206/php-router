@@ -9,9 +9,7 @@ try {
     $router = new Router\Router($_GET["url"]);
 
 
-    $router->get("product/:id/:test", function ($id, $test) {
-        echo $id;
-        echo $test;
+    $router->get("product/", function () {
         echo "product page";
     });
     $router->get("users/", function () {

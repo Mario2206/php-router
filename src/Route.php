@@ -4,6 +4,7 @@ namespace Router;
 interface IERoute {
     public function getPath() : string;
     public function activate() : void;
+    public function find( string $path ) : bool;
 }
 
 class Route implements IERoute {
@@ -49,6 +50,15 @@ class Route implements IERoute {
      */
     public function activate() : void{
         $this->_action->call($this);
+    }
+
+    /*
+     * FOR CHECKING IF THE PATH IS COMPATIBLE WITH THE CURRENT PATH
+     * @param string path
+     * return boolean
+     * **/
+    public function find (string $path) : bool {
+        return $path === $this->_path;
     }
 
 

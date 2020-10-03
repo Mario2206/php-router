@@ -1,33 +1,17 @@
 <?php
 require ("./vendor/autoload.php");
-
+require("./src/example/UserRoute.php");
+require("./src/example/ProductRoute.php");
 
 try {
 
-    $router = new Router\Router($_GET["url"]);
+    global $userRouter;
+    global $productRouter;
 
-
-    $router->get("product/", function () {
-        echo "product page";
-    });
-
-    $router->get("users/", function () {
-        echo "users page";
-    });
-
-    $router->post("test/:id", function ($id) {
-        echo "test : " . $id;
-    });
-
-    $router->update("action/:var/:mix/:thing", function ($var, $mix, $thing) {
-        echo "update action " . $var . " " . $mix . " " . $thing;
-    });
-
-    $router->delete("articles/:id", function ($id) {
-        echo "article id : " . $id . " deleted";
-    });
-
-    $router->parse();
+    $routerManager = new \Router\RouteManager($_GET["url"]);
+    $routerManager->use("user/", $userRouter);
+    $routerManager->use("product/", $productRouter);
+    $routerManager->parse();
 
 } catch (Exception $e) {
     echo "<strong>ERROR : </strong>";

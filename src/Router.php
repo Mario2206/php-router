@@ -1,7 +1,13 @@
 <?php
 namespace Router;
 
-class Router {
+interface IERouter {
+    public function __construct( string $url);
+    public function parse();
+    public function setUrl(string $url);
+}
+
+class Router implements IERouter {
 
     const HTTP_GET = "GET";
     const HTTP_POST = "POST";
@@ -25,6 +31,14 @@ class Router {
 
     public function __construct( string $url )
     {
+        $this->_url = $url;
+    }
+
+    /*
+     * FOR CHANGING CURRENT URL
+     * @param string url
+     * */
+    public function setUrl(string $url) {
         $this->_url = $url;
     }
 

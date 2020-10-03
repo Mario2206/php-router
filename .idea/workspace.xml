@@ -11,6 +11,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9ca91eb7-37b9-4a50-8d5e-ed73c6240bbd" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/example/ProductRoute.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/example/UserRoute.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/router.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/router.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/DynamicRoute.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/DynamicRoute.php" afterDir="false" />
@@ -22,10 +26,16 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ComposerSettings">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+    </include_path>
   </component>
   <component name="ProjectId" id="1iHQnt8XyM2zvERdertC9S2WLXA" />
   <component name="ProjectViewState">
@@ -50,7 +60,8 @@
       <workItem from="1601562210067" duration="7553000" />
       <workItem from="1601578838840" duration="5591000" />
       <workItem from="1601590780596" duration="5474000" />
-      <workItem from="1601651630310" duration="3959000" />
+      <workItem from="1601651630310" duration="5404000" />
+      <workItem from="1601737629075" duration="4712000" />
     </task>
     <servers />
   </component>
@@ -74,9 +85,13 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="595" y="135" key="NewPhpClassDialog/0.0.1536.824@0.0.1536.824" timestamp="1601591202073" />
-    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1601591176842">
+    <state x="604" y="336" key="NewPhpFileDialog" timestamp="1601741590862">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1601591176842" />
+    <state x="604" y="336" key="NewPhpFileDialog/0.0.1536.824@0.0.1536.824" timestamp="1601741590862" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1601738509166">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1601738509166" />
   </component>
 </project>

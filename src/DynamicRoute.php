@@ -41,10 +41,11 @@ class DynamicRoute extends Route
      */
     public function find(string $path): bool
     {
+        if(empty($this->_path)) return $this->_transformDynamicPathToParams($path);
+
         $parts = explode($this->_path,$path);
 
-
-        if(count($parts) === 2) {
+        if(count($parts) === 2 && $parts[0] === "") {
             $dynamicPath = $parts[1];
             return $this->_transformDynamicPathToParams($dynamicPath);
         }
@@ -83,6 +84,4 @@ class DynamicRoute extends Route
     {
         call_user_func_array( $this->_action , $this->params ) ;
     }
-
-
 }

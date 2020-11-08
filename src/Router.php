@@ -21,17 +21,12 @@ class Router implements IERouter {
     /*
      * FOR STORING ALL ROUTES
      * */
-    private $store = [
-        self::HTTP_GET => [],
-        self::HTTP_POST => [],
-        self::HTTP_DELETE => [],
-        self::HTTP_PUT => []
-    ];
+    private $store = [];
 
 
     public function __construct( string $url )
     {
-        $this->_url = $url;
+        $this->_url = trim($url, "/");
     }
 
     /*
@@ -80,15 +75,13 @@ class Router implements IERouter {
      * */
     private function createRoute( string $method, string $path, $action) : void {
 
-        $parts = explode(DynamicRoute::DELIMITER, $path);
+        $parts = explode(":", $path);
 
-        if(count($parts) > 1) {
-            $this->store[$method][] = new DynamicRoute($path, $action);
-        }
-        else
-        {
-            $this->store[$method][] = new Route($path, $action);
-        }
+        $parts = array_map(function ($arg) {
+            return trim($arg, "/");
+        }, $parts);
+        $this->store[$method][] = new Route($parts[0], array_slice($parts, 1), $action);
+        
     }
 
     /*
@@ -101,8 +94,8 @@ class Router implements IERouter {
         $currentRoute = $this->parseRoutes($this->store[$httpMethod]);
 
         if (!$currentRoute) {
-            throw new \Exception("404 ERROR");
-            return;
+            header("HTTP/1.0 404 Not Found");
+            die();
         }
 
         $currentRoute->activate();
@@ -114,15 +107,10 @@ class Router implements IERouter {
      * **/
     private function parseRoutes($routeCollection)   {
 
-        foreach ($routeCollection as $route) {
-
-            $find = $route->find($this->_url);
-
-            if($find) {
-                return $route;
-            }
-        }
-
-        return null;
+        $route = array_filter($routeCollection, function ($item) {
+            return $item->find ($this->_url);
+        });
+        
+        return $route[0] ?? null;
     }
 }

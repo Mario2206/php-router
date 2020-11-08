@@ -66,10 +66,11 @@ class Route implements IERoute {
      * **/
     public function find (string $url) : bool {
 
-        $isFind = preg_match("/^".preg_quote($this->_path)."/", $url);
+        if($this->_path === "") return $url === $this->_path;
+
+        $isFind = preg_match("#^".preg_quote($this->_path)."#", $url);
        
         if($isFind) {
-
             $parts = explode($this->_path, $url);
             $parts = array_filter($parts);
            
@@ -84,7 +85,6 @@ class Route implements IERoute {
 
                 $this->_params = array_combine($this->_params,$args);
             }
-
             return true;
         }        
         return false;

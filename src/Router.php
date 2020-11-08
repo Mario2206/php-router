@@ -97,7 +97,7 @@ class Router implements IERouter {
         $httpMethod = $_SERVER["REQUEST_METHOD"];
 
         $currentRoute = $this->parseRoutes($this->store[$httpMethod]);
-
+        
         if (!$currentRoute) {
             header("HTTP/1.0 404 Not Found");
             die();
@@ -115,7 +115,7 @@ class Router implements IERouter {
         $route = array_filter($routeCollection, function ($item) {
             return $item->find ($this->_url);
         });
-        
-        return $route[0] ?? null;
+
+        return array_shift($route);
     }
 }

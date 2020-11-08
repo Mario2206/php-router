@@ -21,7 +21,12 @@ class Router implements IERouter {
     /*
      * FOR STORING ALL ROUTES
      * */
-    private $store = [];
+    private $store = [
+        self::HTTP_GET => [],
+        self::HTTP_POST => [],
+        self::HTTP_PUT => [],
+        self::HTTP_DELETE => []
+    ];
 
 
     public function __construct( string $url )
